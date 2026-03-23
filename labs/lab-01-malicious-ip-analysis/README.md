@@ -41,9 +41,9 @@ This indicates that the IP has a **history of malicious behavior** and should be
 
 ### 🧪 VirusTotal
 
-![VirusTotal](screenshots/virustotal-1.png)
-![VirusTotal](screenshots/virustotal-2.png)
-![VirusTotal](screenshots/virustotal-3.png)
+![VirusTotal](screenshots/virusTotal1.png)
+![VirusTotal](screenshots/virusTotal2.png)
+![VirusTotal](screenshots/virusTotal3.png)
 
 **Analysis:**
 
@@ -57,8 +57,7 @@ This suggests that:
 
 ### 🌐 SecurityTrails
 
-![SecurityTrails](screenshots/securitytrails.png)
-
+![SecurityTrails](screenshots/securityTrails.png)
 **Analysis:**
 
 Using SecurityTrails, we identified domains associated with the IP address:
@@ -78,8 +77,7 @@ The presence of multiple domains linked to the same IP increases the suspicion l
 
 ### 🖥️ SIEM Alert
 
-![SIEM](screenshots/alert.png)
-
+![SIEM](screenshots/siem.png)
 **Analysis:**
 
 The alert confirms:
