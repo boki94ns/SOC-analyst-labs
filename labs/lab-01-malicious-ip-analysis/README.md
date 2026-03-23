@@ -1,4 +1,4 @@
-# 🛡️ Lab 01 – Malicious IP Communication Analysis
+# 🛡️ Lab 01 - Malicious IP Communication Analysis
 
 ## 📌 Alert Overview
 - Source IP: 10.2.4.33 (Internal)
