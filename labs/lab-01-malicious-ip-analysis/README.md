@@ -108,3 +108,8 @@ However:
 ## 🏁 Final Assessment
 **Threat Level: Medium (Suspicious)**  
 **Action: Monitoring & further investigation**
+
+---
+
+## 📚 Learning Outcome
+Through this lab, I improved my ability to analyze threat intelligence data and apply SOC investigation methodology.
