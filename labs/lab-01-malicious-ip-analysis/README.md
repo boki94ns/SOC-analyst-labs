@@ -1,132 +1,110 @@
-# 🛡️ Lab 01 – Malicious IP Communication Analysis
+# 🔍 Malicious IP Analysis – 192.243.59.20
 
-## 📌 Alert Overview
-
-- **Source IP:** 10.2.4.33 (Internal)
-- **Destination IP:** 192.243.59.20 (External)
-- **Device:** Sophos Firewall
-- **Event Type:** Proxy / Web Traffic
-- **Status Code:** 200 (Successful connection)
+## 📌 Overview
+This lab demonstrates the analysis of a suspicious IP address using publicly available threat intelligence tools.  
+The investigation is based on screenshots provided as part of a cybersecurity training lab (not a live SIEM environment).
 
 ---
 
-## 🔍 Analysis
+## 🧠 Executive Summary
+The analyzed IP address (192.243.59.20) shows multiple indicators of malicious activity.  
+It has been reported for phishing campaigns and malware distribution.
 
-The alert indicates that an internal host initiated an outbound connection to an external IP address via web traffic.
+Although detection on VirusTotal is relatively low, historical abuse data and associated domains suggest suspicious behavior.
 
-Since the connection was successful (status code 200), the communication was allowed and completed.
-
-This type of behavior may represent:
-- Legitimate user activity (web browsing)
-- Access to a potentially malicious website
-- Possible malware communication (Command and Control - C2)
+**Final Verdict: Suspicious – Monitoring recommended**
 
 ---
 
-## 🌐 Threat Intelligence Analysis
+## 🛠️ Methodology
+The following tools were used during the investigation:
 
-### 📊 AbuseIPDB
+- **AbuseIPDB** – for historical abuse reports
+- **VirusTotal** – for detection rate analysis
+- **SecurityTrails** – for identifying associated domains
+
+---
+
+## 🌐 AbuseIPDB Analysis
 
 ![AbuseIPDB](screenshots/abuseipdb.png)
 
-**Analysis:**
+### Findings:
+- IP reported **71 times**
+- Reports include:
+  - Malware distribution
+  - Phishing activity
+- Hosted by:
+  - ISP: Advancedhosters
+  - Type: Data Center / Web Hosting
 
-The IP address has been reported multiple times for malicious activities such as:
-- Malware distribution
-- Phishing campaigns
-
-This indicates that the IP has a **history of malicious behavior** and should be treated as suspicious.
+### Interpretation:
+The IP has a **history of malicious behavior**, but since it belongs to a hosting provider, it may also host legitimate services.
 
 ---
 
-### 🧪 VirusTotal
+## 🦠 VirusTotal Analysis
 
 ![VirusTotal](screenshots/virusTotal1.png)
 ![VirusTotal](screenshots/virusTotal2.png)
 ![VirusTotal](screenshots/virusTotal3.png)
 
-**Analysis:**
+### Findings:
+- Detection rate is relatively low
+- Some vendors flag the IP/domain as suspicious
 
-Detection rate is relatively low, but some vendors classify the domain/IP as suspicious or spam.
-
-This suggests that:
-- The threat is **not widely detected yet**
-- It may represent a **new or low-confidence threat**
+### Interpretation:
+- Threat is **not widely detected yet**
+- Possible:
+  - New threat
+  - Low-confidence detection
+  - Underreported activity
 
 ---
 
-### 🌐 SecurityTrails
+## 🌍 SecurityTrails Analysis
 
 ![SecurityTrails](screenshots/securityTrails.png)
-**Analysis:**
 
-Using SecurityTrails, we identified domains associated with the IP address:
-
+### Findings:
+Associated domains:
 - pinchaturbate.com  
-- (second identified domain from analysis)
+- ds7691.advancedhosters.com  
 
-This confirms that the IP address is part of hosting infrastructure and has been used to serve multiple domains.
-
-Such behavior may indicate:
-- Shared hosting environment
-- Potential abuse by malicious actors
-
-The presence of multiple domains linked to the same IP increases the suspicion level, especially when correlated with AbuseIPDB reports.
+### Interpretation:
+- IP is part of **shared hosting infrastructure**
+- Multiple domains hosted → increases uncertainty
+- Malicious activity could originate from one hosted service
 
 ---
 
-### 🖥️ SIEM Alert
-
-![SIEM](screenshots/siem.png)
-**Analysis:**
-
-The alert confirms:
-- Outbound connection from internal host (10.2.4.33)
-- Communication over web traffic
-- Status code 200 → connection successful
-
-This means the request was allowed through the firewall without being blocked.
+## ⚠️ Limitations
+- Analysis is based on screenshots (no live data)
+- No access to SIEM logs
+- No network traffic validation
+- Relies on third-party threat intelligence
 
 ---
 
-## ⚠️ Conclusion
+## 🧾 Conclusion
 
-This is an **outbound connection** from an internal host to an external IP address with a suspicious reputation.
+The IP address shows a **confirmed history of malicious activity**, including phishing and malware distribution.
 
-Threat intelligence sources indicate:
-- Prior malicious activity reports (AbuseIPDB)
-- Suspicious vendor detections (VirusTotal)
-- Multiple hosted domains (SecurityTrails)
+However:
+- Low VirusTotal detection
+- Hosting provider infrastructure
 
-Although the detection level is not high, the combination of these indicators suggests **potential risk**.
+👉 indicate that this IP may be used by multiple tenants.
 
-The activity is classified as:
-
-> ⚠️ **Suspicious but not confirmed malicious**
-
-Further investigation is required to determine whether the activity is user-driven or related to malicious communication.
-
----
-
-## 🧯 Recommendation
-
-- Monitor the internal host (10.2.4.33) for further suspicious activity
-- Review user browsing behavior
-- Perform endpoint security scan
-- Investigate if similar outbound connections occur repeatedly
-
-If repeated connections to the same IP are observed (especially in short intervals), this may indicate automated communication such as malware beaconing.
-
-In that case:
-
-> 🚫 Blocking the IP/domain would be justified
+### ✅ Recommendation:
+- Do NOT immediately block (risk of false positives)
+- Monitor network traffic related to this IP
+- Correlate with SIEM logs
+- Investigate internal communication with this IP
+- Escalate if additional indicators appear
 
 ---
 
-## 📚 Skills Demonstrated
-
-- SIEM Alert Analysis  
-- Threat Intelligence Correlation  
-- IP Reputation Analysis  
-- Domain Pivoting (IP → Domain)  
-- Security Investigation & Analytical Reasoning
+## 🏁 Final Assessment
+**Threat Level: Medium (Suspicious)**  
+**Action: Monitoring & further investigation**
