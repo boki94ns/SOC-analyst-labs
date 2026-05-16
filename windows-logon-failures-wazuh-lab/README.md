@@ -122,13 +122,13 @@ data.win.system.channel: Security
 
 Windows Event ID `4625` represents a failed logon attempt.
 
-The event also shows `logonType: 2`, which indicates an interactive logon attempt.
+The event also shows `logonType: 2`, which indicates an interactive logon attempt. In this lab, the failed authentication attempts were generated locally through an interactive process using `runas`.
 
 ![Event details part 1](assets/Slika%205.png)
 
 ---
 
-## 6. Target User and Local Workstation
+## 6. Target User, Status and SubStatus Analysis
 
 This section of the event shows which username was targeted during the failed logon attempt.
 
@@ -141,7 +141,20 @@ data.win.eventdata.targetUserSid: S-1-0-0
 data.win.eventdata.workstationName: DESKTOP-FQR1PJ8
 ```
 
-The value `targetUserSid: S-1-0-0` indicates that the account was not successfully mapped to a valid SID, which is expected when the attempted username is invalid or does not exist.
+The value `targetUserSid: S-1-0-0` indicates that the account was not successfully mapped to a valid SID. This is expected when the attempted username is invalid, does not exist, or cannot be resolved by the local system.
+
+The event also contains important authentication failure fields:
+
+```text
+data.win.eventdata.status: 0xC000006D
+data.win.eventdata.subStatus: 0xC0000064
+```
+
+The `Status` field provides the general reason for the failed logon. In this case, `0xC000006D` means that the logon attempt failed because the provided credentials were not valid.
+
+The `SubStatus` field gives a more specific reason for the failure. In this lab, `0xC0000064` indicates that the attempted username does not exist.
+
+Together, these values confirm that the failed logon was caused by an invalid or non-existing account rather than a valid user simply entering the wrong password.
 
 ![Target user details](assets/Slika%206.png)
 
@@ -204,6 +217,11 @@ This means Wazuh classifies this behavior as credential access activity using th
 | Platform | Windows |
 | Data Source | Windows Security Event Logs |
 | Event ID | 4625 |
+| Logon Type | 2 - Interactive |
+| Status | 0xC000006D |
+| Status Meaning | Invalid credentials / failed logon |
+| SubStatus | 0xC0000064 |
+| SubStatus Meaning | Username does not exist |
 | Detection Tool | Wazuh |
 | Wazuh Rule ID | 60204 |
 | Alert Description | Multiple Windows logon failures |
@@ -221,6 +239,9 @@ This lab demonstrates how a simple simulation of failed Windows logon attempts c
 The lab confirms the following:
 
 - Windows generates Security Event ID `4625` for failed logon attempts.
+- The failed logon activity used Logon Type `2`, which represents an interactive logon attempt.
+- The status code `0xC000006D` indicates that the logon attempt failed due to invalid credentials.
+- The substatus code `0xC0000064` indicates that the attempted username does not exist.
 - The Wazuh agent successfully collects Windows Security logs.
 - Wazuh generates an alert for multiple failed Windows logon attempts.
 - Wazuh rule `60204` is triggered.
