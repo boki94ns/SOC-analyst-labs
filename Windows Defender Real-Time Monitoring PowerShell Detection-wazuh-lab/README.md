@@ -47,7 +47,7 @@ These commands:
 
 # Administrator PowerShell Session
 
-<img width="100%" alt="IMG" src="./assets/1.%20Slika(3).png">
+<img width="100%" alt="IMG" src="./assets/1.%20Slika.png">
 
 The screenshot above shows the PowerShell commands executed from an elevated Administrator PowerShell console.
 
