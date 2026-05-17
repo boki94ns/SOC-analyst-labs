@@ -34,7 +34,7 @@ powershell.exe -EncodedCommand VwByAGkAdABlAC0ASABvAHMAdAAgACIASABlAGwAbABvACI=
 
 Although the command generated a parsing error inside PowerShell, Sysmon and Wazuh still successfully detected the use of the `-EncodedCommand` parameter and generated a corresponding security alert.
 
-<img src="assets/1. Slika.img" width="1000">
+<img src="assets/1. Slika.png" width="1000">
 
 ---
 
@@ -51,7 +51,7 @@ The generated alert description was:
 
 > `Powershell.exe spawned a powershell process which executed a base64 encoded command`
 
-<img src="assets/2. Slika.img" width="1000">
+<img src="assets/2. Slika.png" width="1000">
 
 ---
 
@@ -74,7 +74,7 @@ This type of behavior is frequently associated with:
 - Initial access techniques
 - Defense evasion activity
 
-<img src="assets/3. Slika.img" width="1000">
+<img src="assets/3. Slika.png" width="1000">
 
 ---
 
@@ -91,7 +91,7 @@ The Sysmon telemetry also provided detailed process creation information includi
 
 The event confirms that the PowerShell process spawned another PowerShell process using the encoded command parameter.
 
-<img src="assets/4. Slika.img" width="1000">
+<img src="assets/4. Slika.png" width="1000">
 
 ---
 
@@ -111,7 +111,7 @@ Important information captured includes:
 
 This demonstrates how Sysmon provides rich endpoint visibility for SIEM analysis.
 
-<img src="assets/5. Slika.img" width="1000">
+<img src="assets/5. Slika.png" width="1000">
 
 ---
 
@@ -132,7 +132,7 @@ The alert belongs to the following rule groups:
 - `sysmon_eid1_detections`
 - `windows`
 
-<img src="assets/6. Slika.img" width="1000">
+<img src="assets/6. Slika.png" width="1000">
 
 ---
 
