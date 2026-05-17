@@ -1,0 +1,12 @@
+# Attack Flow
+
+1. Kali Linux machine prepared custom username and password lists
+2. Hydra initiated brute-force authentication attempts against the Windows RDP service
+3. Windows generated Security Event ID 4625 logs for failed authentication attempts
+4. Wazuh collected and indexed Windows Security events
+5. Wazuh generated alerts for multiple failed logon attempts
+6. Event analysis identified:
+   - source IP address
+   - workstation name
+   - targeted usernames
+   - authentication method
