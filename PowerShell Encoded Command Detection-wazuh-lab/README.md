@@ -34,15 +34,16 @@ powershell.exe -EncodedCommand VwByAGkAdABlAC0ASABvAHMAdAAgACIASABlAGwAbABvACI=
 
 Although the command generated a parsing error inside PowerShell, Sysmon and Wazuh still successfully detected the use of the `-EncodedCommand` parameter and generated a corresponding security alert.
 
-![PowerShell Execution](assets/1. Slika.img)
+<img src="assets/1. Slika.img" width="1000">
 
 ---
 
 ## Wazuh Alert Detection
 
-After executing the encoded PowerShell command, Wazuh generated a security alert indicating suspicious PowerShell behavior involving a Base64-encoded command.
+After executing the encoded PowerShell command, Wazuh generated a security alert related to suspicious Base64-encoded PowerShell activity.
 
 The alert was mapped to:
+
 - MITRE ATT&CK Technique: `T1059.001`
 - Tactic: `Execution`
 
@@ -50,7 +51,7 @@ The generated alert description was:
 
 > `Powershell.exe spawned a powershell process which executed a base64 encoded command`
 
-![Wazuh Alert Overview](assets/2.%20Slika.img)
+<img src="assets/2. Slika.img" width="1000">
 
 ---
 
@@ -59,18 +60,21 @@ The generated alert description was:
 The expanded Wazuh alert details clearly show the full command line used during execution.
 
 The analysis confirms:
+
 - Usage of `powershell.exe`
 - Usage of the `-EncodedCommand` parameter
 - Presence of the encoded Base64 payload
 - PowerShell process creation activity
 
 This type of behavior is frequently associated with:
+
 - Malware execution
 - Obfuscated PowerShell attacks
 - Malicious scripting activity
-- Initial access and execution techniques
+- Initial access techniques
+- Defense evasion activity
 
-![Command Line Analysis](assets/3.%20Slika.img)
+<img src="assets/3. Slika.img" width="1000">
 
 ---
 
@@ -87,7 +91,7 @@ The Sysmon telemetry also provided detailed process creation information includi
 
 The event confirms that the PowerShell process spawned another PowerShell process using the encoded command parameter.
 
-![Process Analysis](assets/4.%20Slika.img)
+<img src="assets/4. Slika.img" width="1000">
 
 ---
 
@@ -96,6 +100,7 @@ The event confirms that the PowerShell process spawned another PowerShell proces
 The full Sysmon event log contains detailed telemetry regarding the PowerShell execution event.
 
 Important information captured includes:
+
 - Event ID 1 (Process Creation)
 - PowerShell image path
 - Encoded command line
@@ -106,7 +111,7 @@ Important information captured includes:
 
 This demonstrates how Sysmon provides rich endpoint visibility for SIEM analysis.
 
-![Full Sysmon Telemetry](assets/5.%20Slika.img)
+<img src="assets/5. Slika.img" width="1000">
 
 ---
 
@@ -122,11 +127,12 @@ Wazuh successfully mapped the detected activity to the MITRE ATT&CK framework.
 - Tactic: `Execution`
 
 The alert belongs to the following rule groups:
+
 - `sysmon`
 - `sysmon_eid1_detections`
 - `windows`
 
-![MITRE ATT&CK Mapping](assets/6.%20Slika.img)
+<img src="assets/6. Slika.img" width="1000">
 
 ---
 
@@ -137,6 +143,7 @@ This lab successfully demonstrated how Wazuh and Sysmon can detect suspicious Po
 Even though the PowerShell command itself generated a parsing error, the telemetry generated during process creation was still sufficient for Sysmon and Wazuh to identify and alert on the suspicious activity.
 
 Key takeaways from this lab include:
+
 - Detection of encoded PowerShell execution
 - Sysmon Event ID 1 process creation monitoring
 - MITRE ATT&CK mapping
@@ -144,6 +151,7 @@ Key takeaways from this lab include:
 - Command-line analysis capabilities within Wazuh
 
 This type of detection is highly relevant in modern SOC environments because PowerShell encoded commands are commonly used by attackers for:
+
 - Malware delivery
 - Defense evasion
 - Obfuscation
