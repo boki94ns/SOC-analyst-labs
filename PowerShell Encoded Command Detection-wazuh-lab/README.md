@@ -34,7 +34,7 @@ powershell.exe -EncodedCommand VwByAGkAdABlAC0ASABvAHMAdAAgACIASABlAGwAbABvACI=
 
 Although the command generated a parsing error inside PowerShell, Sysmon and Wazuh still successfully detected the use of the `-EncodedCommand` parameter and generated a corresponding security alert.
 
-![PowerShell Execution](assets/1.%20Slika.img)
+![PowerShell Execution](assets/1. Slika.img)
 
 ---
 
