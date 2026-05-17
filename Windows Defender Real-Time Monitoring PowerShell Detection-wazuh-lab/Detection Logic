@@ -1,0 +1,2 @@
+Wazuh generated the alert because PowerShell created a temporary script-related file inside the Windows Temp directory.
+This behavior is commonly associated with malicious PowerShell activity and therefore triggered a Sysmon-based detection rule.
