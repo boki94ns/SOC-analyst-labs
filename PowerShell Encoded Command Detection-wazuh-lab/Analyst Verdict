@@ -1,0 +1,32 @@
+---
+
+## Analyst Verdict
+
+Based on the generated telemetry and Wazuh detection results, the observed activity can be classified as suspicious PowerShell execution involving an encoded command.
+
+Several indicators contributed to this assessment:
+
+- Usage of the `-EncodedCommand` PowerShell parameter
+- Creation of a child PowerShell process
+- Detection triggered by Sysmon Event ID 1
+- MITRE ATT&CK mapping to `T1059.001 - PowerShell`
+- High-severity Wazuh detection rule
+- Obfuscated command execution behavior
+
+Although this lab used a controlled simulation in a virtual environment, similar activity is commonly associated with:
+
+- Malware execution
+- Living-off-the-land techniques (LOLBins)
+- PowerShell abuse
+- Obfuscated attacker commands
+- Post-exploitation activity
+
+From a SOC analyst perspective, this alert would require additional investigation to determine:
+
+- The origin of the PowerShell execution
+- Whether the encoded payload was malicious
+- User intent and execution context
+- Potential persistence or follow-up activity
+- Additional related alerts on the endpoint
+
+The detection demonstrates the importance of Sysmon telemetry and SIEM correlation for identifying suspicious PowerShell activity within enterprise environments.
