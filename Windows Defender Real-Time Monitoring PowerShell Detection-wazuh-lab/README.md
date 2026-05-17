@@ -1,4 +1,4 @@
-# Lab 06 - Windows Defender Real-Time Monitoring PowerShell Detection
+# Windows Defender Real-Time Monitoring PowerShell Detection
 
 ## Introduction
 
@@ -47,7 +47,7 @@ These commands:
 
 # Administrator PowerShell Session
 
-<img width="100%" alt="IMG" src="assets/1. Slika(3).png">
+<img width="100%" alt="IMG" src="./assets/1.%20Slika(3).png">
 
 The screenshot above shows the PowerShell commands executed from an elevated Administrator PowerShell console.
 
@@ -60,7 +60,7 @@ Important observations:
 
 # Wazuh Alert Detection
 
-<img width="100%" alt="IMG" src="assets/2. Slika(3).png">
+<img width="100%" alt="IMG" src="./assets/2.%20Slika(3).png">
 
 Wazuh generated the following alert:
 
@@ -79,7 +79,7 @@ This detection was triggered after PowerShell created a temporary script-related
 
 # Sysmon Event Investigation
 
-<img width="100%" alt="IMG" src="assets/3. Slika(2).png">
+<img width="100%" alt="IMG" src="./assets/3.%20Slika(2).png">
 
 The event details show:
 - PowerShell executable path
@@ -104,7 +104,7 @@ C:\Users\Lenovo\AppData\Local\Temp\__PSScriptPolicyTest...
 
 # Sysmon Event ID 11 - File Create
 
-<img width="100%" alt="IMG" src="assets/4. Slika(2).png">
+<img width="100%" alt="IMG" src="./assets/4.%20Slika(2).png">
 
 The event was generated from:
 
@@ -130,7 +130,7 @@ This means Sysmon detected creation of a file by PowerShell inside the Temp dire
 
 # Full Wazuh Alert Analysis
 
-<img width="100%" alt="IMG" src="assets/5. Slika(2).png">
+<img width="100%" alt="IMG" src="./assets/5.%20Slika(2).png">
 
 The alert contained:
 - Sysmon rule groups
@@ -149,7 +149,7 @@ Rule details:
 
 # MITRE ATT&CK Mapping
 
-<img width="100%" alt="IMG" src="assets/6. Slika(2).png">
+<img width="100%" alt="IMG" src="./assets/6.%20Slika(2).png">
 
 Mapped MITRE ATT&CK information:
 
