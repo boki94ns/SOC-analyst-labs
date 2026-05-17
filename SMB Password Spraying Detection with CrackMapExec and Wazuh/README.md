@@ -294,3 +294,44 @@ The analysis showed:
 - Aggregated authentication failure detection
 
 This type of activity is commonly associated with password spraying and brute-force attacks and represents an important detection scenario for SOC analysts and blue team environments.
+
+# Indicators Observed
+
+| Indicator | Value |
+|---|---|
+| Source IP | 192.168.1.46 |
+| Destination IP | 192.168.1.81 |
+| Target Protocol | SMB |
+| Destination Port | 445 |
+| Authentication Package | NTLM |
+| Event ID | 4625 |
+| Logon Type | 3 |
+| Wazuh Rule ID | 60122 |
+
+---
+
+# Security Impact
+
+Repeated failed SMB authentication attempts may indicate:
+
+- Password spraying
+- Brute-force activity
+- Unauthorized access attempts
+- Credential attacks
+- Lateral movement attempts
+
+If successful, this type of activity could allow attackers to gain unauthorized access to internal systems.
+
+---
+
+# Recommendations
+
+To reduce the risk of SMB password spraying attacks:
+
+- Enforce strong password policies
+- Implement account lockout policies
+- Disable unused accounts
+- Restrict SMB exposure
+- Monitor failed authentication attempts
+- Enable MFA where possible
+- Use SIEM alert correlation for repeated failures
